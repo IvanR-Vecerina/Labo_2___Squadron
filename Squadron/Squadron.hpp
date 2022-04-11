@@ -27,16 +27,16 @@ public:
     void setLeader(const Ship& ship);
     void demoteLeader(const Ship& ship);
 
-    Squadron& addShip(const Ship& ship);
+    Squadron& addShip(Ship& ship);
     Squadron& removeShip(const Ship& ship);
 
     Squadron add(const Ship& ship) const;
     Squadron remove(const Ship& ship) const;
 
     Ship& at(size_t i);
-    Ship& operator[](size_t i);
+    Ship& operator[](size_t i); //TODO: cout << squad[i];
     const Ship& operator[](size_t i) const;
-    // TODO: make "squadron[0] = ship" possible
+    // TODO: make "squad[0] = ship" possible
 
     Squadron& operator+=(const Ship& ship);
     Squadron& operator-=(const Ship& ship);
@@ -46,12 +46,25 @@ public:
     double getFuelConsumption();
 
 private:
+
+   // Struct because we do not encapsulate any behavior or invariants.
+    struct Member {
+       Member(Member *pMember, Ship *pShip) : next(pMember), ship(pShip){}
+
+       Member* next;
+       Ship* ship;
+    };
+    Member** findPredecessor(const Ship& ship);
+    //Member const&  findMember(const Ship& ship) const { return **const_cast<Squadron*>(this)->findPredecessor(ship); }
+
     std::string name;
     SquadronMember* firstmember;
     Ship* Leader;
+    Member* first;
 
-    void allocate();
-    void deallocate();
+    int allocate();
+
+
 };
 
 

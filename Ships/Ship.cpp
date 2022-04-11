@@ -3,3 +3,7 @@
 //
 
 #include "Ship.hpp"
+
+void Ship::setNickname(const std::string& nickname) {
+   this->nickname = nickname;
+}
