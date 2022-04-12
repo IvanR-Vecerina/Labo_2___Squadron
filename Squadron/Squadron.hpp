@@ -8,6 +8,7 @@
 
 #include "../Ships/Ship.hpp"
 #include "SquadronMember.hpp"
+#include <string>
 
 class Squadron;
 
@@ -17,17 +18,16 @@ std::ostream& operator<<(std::ostream& os, const Squadron& squadron);
 
 class Squadron {
 public:
-    Squadron();
-    Squadron(std::string name);
+    Squadron(const std::string& name);
     Squadron(const Squadron& squadron);
     ~Squadron();
 
 
 
-    void setLeader(const Ship& ship);
+    void setLeader(Ship& ship);
     void demoteLeader(const Ship& ship);
 
-    Squadron& addShip(Ship& ship);
+    Squadron& addShip(const Ship& ship);
     Squadron& removeShip(const Ship& ship);
 
     Squadron add(const Ship& ship) const;
@@ -57,13 +57,9 @@ private:
     Member** findPredecessor(const Ship& ship);
     //Member const&  findMember(const Ship& ship) const { return **const_cast<Squadron*>(this)->findPredecessor(ship); }
 
-    std::string name;
-    SquadronMember* firstmember;
-    Ship* Leader;
+    const std::string name;
+    Ship* leader;
     Member* first;
-
-    int allocate();
-
 
 };
 
