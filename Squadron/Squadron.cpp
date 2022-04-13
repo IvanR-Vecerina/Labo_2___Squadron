@@ -21,7 +21,7 @@ std::string Squadron::getName() const {
    return name;
 }
 
-const Ship &Squadron::getLeader() const {
+Ship & Squadron::getLeader() const {
    return *leader;
 }
 
@@ -42,7 +42,7 @@ Squadron& Squadron::demoteLeader(const Ship &ship) {
 Squadron& Squadron::addShip(Ship& ship) {
    Member*& prev = findPredecessor(ship);
 
-   if( prev==nullptr ) // if not null, ship is already in the list
+   if( prev == nullptr ) // if not null, ship is already in the list
       prev = new Member( nullptr, &ship );
 
    return *this;
@@ -149,7 +149,7 @@ double Squadron::getFuelConsumption(unsigned long distance) const {
    double consumption = 0;
 
    for (Member* tmp = first; tmp != nullptr; tmp = tmp->next)
-      consumption += tmp->ship->getFuelConsumption(distance, 0);
+      consumption += tmp->ship->getFuelConsumption(distance, maxVel);
 
    return consumption;
 }

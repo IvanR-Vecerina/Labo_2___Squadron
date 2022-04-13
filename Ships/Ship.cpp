@@ -5,7 +5,7 @@
 #include "Ship.hpp"
 #include <cmath>
 
-Ship::Ship(std::string id, unsigned int weight, unsigned int max_velocity):
+Ship::Ship(std::string id, double weight, unsigned int max_velocity):
 id("[" + id + "]"), weight(weight), max_velocity(max_velocity) {}
 
 void Ship::setNickname(const std::string& name) {

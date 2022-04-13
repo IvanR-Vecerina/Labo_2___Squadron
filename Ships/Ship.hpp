@@ -29,14 +29,14 @@ private:
     std::string nickname;
 
     const std::string id;
-    const unsigned int weight;
+    const double weight;
     const unsigned int max_velocity;
 
    Ship& operator=(const Ship&) = delete;
    Ship(const Ship&) = delete;
 
 protected:
-   Ship(std::string id, unsigned int weight, unsigned int max_velocity);
+   Ship(std::string id, double weight, unsigned int max_velocity);
 };
 
 

@@ -45,7 +45,7 @@ public:
 
    /** Public Getters for convenience **/
    std::string getName() const;
-   const Ship& getLeader() const;
+   Ship & getLeader() const;
    unsigned long getMaxVelocity() const;
    double getTotalWeight() const;
    double getFuelConsumption(unsigned long distance) const;

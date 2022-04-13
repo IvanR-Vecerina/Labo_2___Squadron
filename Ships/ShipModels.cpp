@@ -32,7 +32,7 @@ TIEHunter::TIEHunter() :
 TIEInterceptor::TIEInterceptor() :
    Ship(model + " #" + std::to_string(++no), m_weight, m_maxVelocity) {}
 
-CargoShip::CargoShip(std::string id, unsigned int weight, unsigned int max_velocity, double maxCargo, double cargo) :
+CargoShip::CargoShip(std::string id, double weight, unsigned int max_velocity, double maxCargo, double cargo) :
 Ship(id, weight, max_velocity), maxCargo(maxCargo) {
    setCargo(cargo);
 }

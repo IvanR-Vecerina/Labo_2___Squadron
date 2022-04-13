@@ -42,13 +42,13 @@ private:
     double cargo;
     const double maxCargo;
 protected:
-    CargoShip(std::string id, unsigned int weight, unsigned int max_velocity, double maxCargo, double cargo = 0.0);
+    CargoShip(std::string id, double weight, unsigned int max_velocity, double maxCargo, double cargo = 0.0);
 };
 
 
 class Shuttle : public CargoShip {
 public:
-    Shuttle(double cargo = 0);
+    Shuttle(double cargo = 0.0);
 
 private:
     static unsigned int no;
@@ -59,7 +59,7 @@ private:
 };
 class Dreadnought : public CargoShip {
 public:
-    Dreadnought(double cargo = 0);
+    Dreadnought(double cargo = 0.0);
 
 private:
     static unsigned int no;
