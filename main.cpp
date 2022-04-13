@@ -1,6 +1,5 @@
 #include <cstdlib>
 #include <iostream>
-#include <limits>
 #include "Ships/ShipModels.hpp"
 #include "Squadron/Squadron.hpp"
 
@@ -22,11 +21,6 @@ int main() {
     squad.setLeader(blackLeader);
 
     cout << squad << endl;
-
-    //Code end
-    cout << endl;
-    cout << "press ENTER to exit...";
-    cin.ignore(numeric_limits<streamsize>::max() ,'\n');
 
     return EXIT_SUCCESS;
 }

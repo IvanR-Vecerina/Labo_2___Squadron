@@ -14,14 +14,15 @@ std::ostream& operator<< (std::ostream& os, const Ship& ship);
 class Ship
 {
 public:
-    virtual ~Ship();
+    virtual ~Ship() = default;
 /* à compléter */
     virtual std::ostream& toStream(std::ostream& os) const;
-    virtual double getWeight();
+    virtual double getWeight() const;
 
-    void setNickname(const std::string& nickname);
+    void setNickname(const std::string& name);
 
-    unsigned int getMaxVelocity();
+    unsigned int getMaxVelocity() const;
+    double getFuelConsumption(unsigned long distance, unsigned long velocity) const;
 
 
 private:
@@ -35,8 +36,7 @@ private:
    Ship(const Ship&) = delete;
 
 protected:
-   Ship(std::string i_id, ...);
-    Ship();
+   Ship(std::string id, unsigned int weight, unsigned int max_velocity);
 };
 
 

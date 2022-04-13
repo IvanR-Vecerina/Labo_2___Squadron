@@ -7,6 +7,7 @@
 
 
 #include "Ship.hpp"
+#include <string>
 
 class TIEHunter : public Ship {
 public:
@@ -14,7 +15,9 @@ public:
 
 private:
     static unsigned int no;
-
+    const static std::string model;
+    const static double m_weight;
+    const static unsigned long m_maxVelocity;
 };
 class TIEInterceptor : public Ship {
 public:
@@ -22,40 +25,48 @@ public:
 
 private:
     static unsigned int no;
-
-
+    const static std::string model;
+    const static double m_weight;
+    const static unsigned long m_maxVelocity;
 };
 
 class CargoShip : public Ship {
 public:
-    virtual ~CargoShip();
+    ~CargoShip() override = default;
 
+    std::ostream& toStream(std::ostream& os) const override;
+    double getWeight() const override;
     void setCargo(double cargo);
 
 private:
     double cargo;
-
+    const double maxCargo;
 protected:
-    CargoShip();
-    CargoShip(double cargo);
+    CargoShip(std::string id, unsigned int weight, unsigned int max_velocity, double maxCargo, double cargo = 0.0);
 };
 
 
 class Shuttle : public CargoShip {
 public:
-    Shuttle(double cargo);
+    Shuttle(double cargo = 0);
 
 private:
     static unsigned int no;
-
-
+    const static std::string model;
+    const static double m_weight;
+    const static unsigned long m_maxVelocity;
+    const static double m_maxCargo;
 };
 class Dreadnought : public CargoShip {
 public:
-    Dreadnought(double cargo);
+    Dreadnought(double cargo = 0);
 
 private:
     static unsigned int no;
+    const static std::string model;
+    const static double m_weight;
+    const static unsigned long m_maxVelocity;
+    const static double m_maxCargo;
 };
 
 
