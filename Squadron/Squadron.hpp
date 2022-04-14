@@ -221,14 +221,14 @@ private:
    struct Member {
       Member(Member *pMember, Ship *pShip) : next_(pMember), ship_(pShip) {} // inline constructor for struct
 
-      Member *next_;
-      Ship *ship_;
+      Member* next_;
+      Ship* ship_;
    };
 
    /** Member Variables **/
    std::string name_;
-   Ship *leader_;
-   Member *first_;
+   Ship* leader_;
+   Member* first_;
 
    /**
     * @brief getter for Ith member of the squad
