@@ -3,24 +3,44 @@
 #include "Ships/ShipModels.hpp"
 #include "Squadron/Squadron.hpp"
 
-using namespace std;
+void demo();
+void tests();
 
+// false -> demo, true -> tests
+const bool TEST_MODE = false;
 
+/**
+ * @author Ivan Vecerina
+ * @date 17.03.2022
+ *
+ * @return exit_result
+ */
 int main() {
 
-    TIEHunter blackLeader;
-    blackLeader.setNickname("Black Leader");
-    TIEHunter blackTwo;
-    Shuttle shuttle(23.4);
+   if (TEST_MODE) {
+      tests();
+   } else {
+      demo();
+   }
 
-    Squadron squad("Black Squadron");
-    squad += blackLeader;
-    squad += blackTwo;
-    squad += shuttle;
+   return EXIT_SUCCESS;
+}
 
-    squad.setLeader(blackLeader);
+void demo() {
+   TIEHunter blackLeader;
+   blackLeader.setNickname("Black leader_");
+   TIEHunter blackTwo;
+   Shuttle shuttle(23.4);
 
-    cout << squad << endl;
+   Squadron squad("Black Squadron");
+   squad += blackLeader;
+   squad += blackTwo;
+   squad += shuttle;
 
-    return EXIT_SUCCESS;
+   squad.setLeader(blackLeader);
+   std::cout << squad << std::endl;
+}
+
+void tests(){
+
 }

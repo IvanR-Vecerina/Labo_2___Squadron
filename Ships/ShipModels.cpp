@@ -1,63 +1,73 @@
-//
-// Created by Ivan Vecerina on 17/03/2022.
-//
+/**
+ * @author Ivan Vecerina
+ * @date 17/03/2022
+ *
+ * @details definitions of "ShipModels.hpp"
+ */
 
 #include "ShipModels.hpp"
 
+// ============================== TIE HUNTER (SHIP) ==============================
 unsigned int TIEHunter::no = 0;
-const std::string TIEHunter::model = "TIE/LN";
-const double TIEHunter::m_weight = 6.00;
-const unsigned long TIEHunter::m_maxVelocity = 100;
-
-unsigned int TIEInterceptor::no = 0;
-const std::string TIEInterceptor::model = "TIE/IN";
-const double TIEInterceptor::m_weight = 5.00;
-const unsigned long TIEInterceptor::m_maxVelocity = 110;
-
-unsigned int Shuttle::no = 0;
-const std::string Shuttle::model = "Lambda-class shuttle";
-const double Shuttle::m_weight = 360.00;
-const unsigned long Shuttle::m_maxVelocity = 54;
-const double Shuttle::m_maxCargo = 80.00;
-
-unsigned int Dreadnought::no = 0;
-const std::string Dreadnought::model = "Super-class Star Destroyer";
-const double Dreadnought::m_weight = 9000000000.00;
-const unsigned long Dreadnought::m_maxVelocity = 40;
-const double Dreadnought::m_maxCargo = 250000.00;
+const char* TIEHunter::MODEL = "TIE/LN";
+const double TIEHunter::WEIGHT = 6.00;
+const unsigned long TIEHunter::MAX_SPEED = 100;
 
 TIEHunter::TIEHunter() :
-   Ship(model + " #" + std::to_string(++no), m_weight, m_maxVelocity) {}
+   Ship(
+      std::string(MODEL) + " #" + std::to_string(++no),
+      WEIGHT,
+      MAX_SPEED
+   ) {
+}
+
+TIEHunter::~TIEHunter() = default;
+
+// ============================== TIE INTERCEPTOR (SHIP) ==============================
+unsigned int TIEInterceptor::no = 0;
+const char* TIEInterceptor::MODEL = "TIE/IN";
+const double TIEInterceptor::WEIGHT = 5.00;
+const unsigned long TIEInterceptor::MAX_SPEED = 110;
 
 TIEInterceptor::TIEInterceptor() :
-   Ship(model + " #" + std::to_string(++no), m_weight, m_maxVelocity) {}
-
-CargoShip::CargoShip(std::string id, double weight, unsigned int max_velocity, double maxCargo, double cargo) :
-Ship(id, weight, max_velocity), maxCargo(maxCargo) {
-   setCargo(cargo);
+   Ship(std::string(MODEL) + " #" + std::to_string(++no),
+        WEIGHT,
+        MAX_SPEED
+   ) {
 }
 
-void CargoShip::setCargo(double cargo) {
-   if (cargo > maxCargo || cargo < 0)
-      throw std::invalid_argument("cargo has to be between 0 and " + std::to_string(maxCargo));
+TIEInterceptor::~TIEInterceptor() = default;
 
-   this->cargo = cargo;
-}
-
-double CargoShip::getWeight() const {
-   return Ship::getWeight() + cargo;
-}
-
-std::ostream &CargoShip::toStream(std::ostream &os) const {
-   return Ship::toStream(os) << "  cargo : " << cargo << " tons (max : " << maxCargo << ")" << std::endl;
-}
+// ============================== SHUTTLE (CARGO SHIP) ==============================
+unsigned int Shuttle::no = 0;
+const char* Shuttle::MODEL = "Lambda-class shuttle";
+const double Shuttle::WEIGHT = 360.00;
+const unsigned long Shuttle::MAX_SPEED = 54;
+const double Shuttle::MAX_CARGO = 80.00;
 
 Shuttle::Shuttle(double cargo) :
-   CargoShip(model + " #" + std::to_string(++no), m_weight, m_maxVelocity, m_maxCargo, cargo){
+   CargoShip(std::string(MODEL) + " #" + std::to_string(++no),
+             WEIGHT,
+             MAX_SPEED,
+             MAX_CARGO, cargo
+   ) {
 }
 
+Shuttle::~Shuttle() = default;
 
+// ============================== DREADNOUGHT (CARGO SHIP) ==============================
+unsigned int Dreadnought::no = 0;
+const char* Dreadnought::MODEL = "Super-class Star Destroyer";
+const double Dreadnought::WEIGHT = 9000000000.00;
+const unsigned long Dreadnought::MAX_SPEED = 40;
+const double Dreadnought::MAX_CARGO = 250000.00;
 
 Dreadnought::Dreadnought(double cargo) :
-   CargoShip(model + " #" + std::to_string(++no), m_weight, m_maxVelocity, m_maxCargo, cargo){
+   CargoShip(std::string(MODEL) + " #" + std::to_string(++no),
+             WEIGHT,
+             MAX_SPEED,
+             MAX_CARGO, cargo
+   ) {
 }
+
+Dreadnought::~Dreadnought() = default;

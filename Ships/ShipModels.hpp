@@ -1,73 +1,91 @@
-//
-// Created by Ivan Vecerina on 17/03/2022.
-//
+/**
+ * @author Ivan Vecerina
+ * @date 17/03/2022
+ *
+ * @details Declaration of Ship models classes
+ */
 
-#ifndef LABO_2___SQUADRON_SHIPMODELS_HPP
-#define LABO_2___SQUADRON_SHIPMODELS_HPP
-
+#ifndef LABO_2_SQUADRON_SHIPMODELS_HPP
+#define LABO_2_SQUADRON_SHIPMODELS_HPP
 
 #include "Ship.hpp"
-#include <string>
 
+/**
+ * TIEHunter class inheriting of Ship.
+ */
 class TIEHunter : public Ship {
 public:
-    TIEHunter();
+   /** Constructor and destructor **/
+   TIEHunter();
+   ~TIEHunter() override;
 
 private:
-    static unsigned int no;
-    const static std::string model;
-    const static double m_weight;
-    const static unsigned long m_maxVelocity;
+   /** Static model serial number counter **/
+   static unsigned int no;
+
+   /** Model specs **/
+   const static char* MODEL;
+   const static double WEIGHT;
+   const static unsigned long MAX_SPEED;
 };
+
+/**
+ * TIEInterceptor class inheriting of Ship.
+ */
 class TIEInterceptor : public Ship {
 public:
-    TIEInterceptor();
+   /** Constructor and destructor **/
+   TIEInterceptor();
+   ~TIEInterceptor() override;
 
 private:
-    static unsigned int no;
-    const static std::string model;
-    const static double m_weight;
-    const static unsigned long m_maxVelocity;
+   /** Static model serial number counter **/
+   static unsigned int no;
+
+   /** Model specs **/
+   const static char* MODEL;
+   const static double WEIGHT;
+   const static unsigned long MAX_SPEED;
 };
 
-class CargoShip : public Ship {
-public:
-    ~CargoShip() override = default;
-
-    std::ostream& toStream(std::ostream& os) const override;
-    double getWeight() const override;
-    void setCargo(double cargo);
-
-private:
-    double cargo;
-    const double maxCargo;
-protected:
-    CargoShip(std::string id, double weight, unsigned int max_velocity, double maxCargo, double cargo = 0.0);
-};
-
-
+/**
+ * Shuttle class inheriting of CargoShip.
+ */
 class Shuttle : public CargoShip {
 public:
-    Shuttle(double cargo = 0.0);
+   /** Constructor and destructor **/
+   explicit Shuttle(double cargo = 0.0); // default cargo to 0.0
+   ~Shuttle() override;
 
 private:
-    static unsigned int no;
-    const static std::string model;
-    const static double m_weight;
-    const static unsigned long m_maxVelocity;
-    const static double m_maxCargo;
+   /** Static model serial number counter **/
+   static unsigned int no;
+
+   /** Model specs **/
+   const static char* MODEL;
+   const static double WEIGHT;
+   const static unsigned long MAX_SPEED;
+   const static double MAX_CARGO;
 };
+
+/**
+ * Dreadnought class inheriting of CargoShip.
+ */
 class Dreadnought : public CargoShip {
 public:
-    Dreadnought(double cargo = 0.0);
+   /** Constructor and destructor **/
+   explicit Dreadnought(double cargo = 0.0); // default cargo to 0.0
+   ~Dreadnought() override;
 
 private:
-    static unsigned int no;
-    const static std::string model;
-    const static double m_weight;
-    const static unsigned long m_maxVelocity;
-    const static double m_maxCargo;
+   /** Static model serial number counter **/
+   static unsigned int no;
+
+   /** Model specs **/
+   const static char* MODEL;
+   const static double WEIGHT;
+   const static unsigned long MAX_SPEED;
+   const static double MAX_CARGO;
 };
 
-
-#endif //LABO_2___SQUADRON_SHIPMODELS_HPP
+#endif //LABO_2_SQUADRON_SHIPMODELS_HPP
